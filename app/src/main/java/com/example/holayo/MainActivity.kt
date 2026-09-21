@@ -1,20 +1,39 @@
 package com.example.holayo
-
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-
+// Tu modelo de datos: una línea, y ya tiene igualdad, copia y representación.
+data class Perfil(
+    val nombre: String,
+    val dato: String,
+    val apodo: String? // el ? declara: "puede no haber apodo" — y el compilador lo vigila
+)
 class MainActivity : AppCompatActivity() {
+    private val perfil = Perfil(
+        nombre = "Sergio López",
+        dato = "Estoy cursando Aplicaciones Móviles",
+        apodo = "Ser" // probá también con un apodo real: "Rama"
+    )
+    private var saludoFormal = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        val tvSaludo = findViewById<TextView>(R.id.tvSaludo)
+        val tvDato = findViewById<TextView>(R.id.tvDato)
+        val btnSaludar = findViewById<Button>(R.id.btnSaludar)
+        // Si hay apodo se usa; si es null, el nombre. El operador ?: es el
+        "plan B".
+        val comoLlamarme = perfil.apodo ?: perfil.nombre
+        tvSaludo.text = "Hola, soy $comoLlamarme"
+        tvDato.text = perfil.dato
+        // Una lambda: la función que se ejecuta cuando el botón se toca.
+        btnSaludar.setOnClickListener {
+            saludoFormal = !saludoFormal
+            tvSaludo.text = if (saludoFormal)
+                "Hola, soy $comoLlamarme"
+            else
+                "¡Buenas! Acá $comoLlamarme"
         }
     }
 }
