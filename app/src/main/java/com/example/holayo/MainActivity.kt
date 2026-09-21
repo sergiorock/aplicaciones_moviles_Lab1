@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
         val tvSaludo = findViewById<TextView>(R.id.tvSaludo)
         val tvDato = findViewById<TextView>(R.id.tvDato)
         val btnSaludar = findViewById<Button>(R.id.btnSaludar)
-        // Si hay apodo se usa; si es null, el nombre. El operador ?: es el
-        "plan B".
+        // Si hay apodo se usa; si es null, el nombre. El operador ?: es el  "plan B".
         val comoLlamarme = perfil.apodo ?: perfil.nombre
         tvSaludo.text = "Hola, soy $comoLlamarme"
         tvDato.text = perfil.dato
