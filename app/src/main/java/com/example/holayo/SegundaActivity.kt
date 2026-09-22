@@ -15,6 +15,11 @@ class SegundaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d("VIDA", "Segunda → onCreate")
         setContentView(R.layout.activity_segunda)
+
+
+        if (savedInstanceState != null) {
+            contador = savedInstanceState.getInt("CLAVE_CONTADOR", 0)
+        }
         val nombre = intent.getStringExtra("nombre") ?: "misterioso visitante"
         findViewById<TextView>(R.id.tvBienvenida).text =
             "Sala de experimentos de $nombre"
@@ -31,4 +36,8 @@ class SegundaActivity : AppCompatActivity() {
     override fun onPause() { super.onPause(); Log.d("VIDA", "Segunda → onPause") }
     override fun onStop() { super.onStop(); Log.d("VIDA", "Segunda → onStop") }
     override fun onDestroy() { super.onDestroy(); Log.d("VIDA", "Segunda → onDestroy") }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("CLAVE_CONTADOR", contador)
+    }
 }
