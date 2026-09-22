@@ -34,5 +34,13 @@ class MainActivity : AppCompatActivity() {
             else
                 "¡Buenas! Acá $comoLlamarme"
         }
+        val btnIrSegunda = findViewById<Button>(R.id.btnIrSegunda)
+        btnIrSegunda.setOnClickListener {
+            // Intent EXPLÍCITO: nombra al destino por su clase.
+            val intent = Intent(this, SegundaActivity::class.java)
+            // El equipaje: un dato que viaja con el mensaje.
+            intent.putExtra("nombre", perfil.apodo ?: perfil.nombre)
+            startActivity(intent)
+        }
     }
 }
